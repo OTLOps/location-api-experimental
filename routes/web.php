@@ -15,6 +15,5 @@ use App\Http\Controllers\ClientController;
 |
 */
 
-Route::get('/',[ClientController::class,'index'])->name('/');
-Route::get('/showlocation',[LocationController::class,'index'])->name('index');
+Route::get('/',[ClientController::class,'index'])->name('index');
 Route::get('result',[ClientController::class,'result'])->name('result');

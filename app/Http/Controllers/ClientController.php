@@ -9,17 +9,33 @@ class ClientController extends Controller
 {
     public function index()
     {
-        return view('anothergit.home');
-    }
-    public function showlocation(Request $req)
-    {
-        // Http::get("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/24.850463, 46.678785/2022-01-01/2022-05-01?unitGroup=metric&elements=datetime%2Cicon&include=days&key=B8WZUP4ZTLXFHBRF3XW29DPDT&contentType=json");
-        
-        return view('anothergit.result');
+        return view('map');
     }
 
-    public function result()
+    public function result(Request $req)
     {
-        return view('result');
+        $req->validate([
+            'lat' => 'required',
+            'lng' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+        ]);
+        $from = $req->from;
+        $to = $req->to;
+        $location = $req->lat . ',' . $req->lng;
+        $response = Http::get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' . $location . '/' . $from . '/' . $to . '?unitGroup=metric&elements=datetime%2Cicon&include=days&key=B8WZUP4ZTLXFHBRF3XW29DPDT&contentType=json');
+        $data = $response->json();
+
+        $resolvedAddress = $data['resolvedAddress'];
+        $timezone = $data['timezone'];
+        $days = $data['days'];
+        $icons = array();
+        foreach ($days as $day)
+        {
+            if ($day['icon'] == 'rain') {
+                array_push($icons,$day['icon']);
+            }
+        }
+        return view('result', compact('resolvedAddress', 'icons', 'timezone'));
     }
 }
