@@ -8,7 +8,7 @@
                     <label for="lat">Latitude</label>
                 </td>
                 <td>
-                    <input type="text" class="form-control" placeholder="lat" name="lat" id="lat"><br>
+                    <input type="text" readonly class="form-control" placeholder="lat" name="lat" id="lat"><br>
                     <span id="valid">@error('lat'){{ $message }}@enderror</span>
                 </td>
             </tr>
@@ -17,7 +17,7 @@
                     <label for="lng">Longitude</label>
                 </td>
                 <td>
-                    <input type="text" class="form-control" placeholder="lng" name="lng" id="lng"><br>
+                    <input type="text" readonly class="form-control" placeholder="lng" name="lng" id="lng"><br>
                     <span id="valid">@error('lng'){{ $message }}@enderror</span>
                 </td>
             </tr>

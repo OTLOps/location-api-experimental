@@ -36,16 +36,17 @@
         </svg>
     </a>
 </div>
-<div>
-    <span>resolvedAddress => {{ $resolvedAddress }}</span><br>
-    <span>timezone => {{ $timezone }}</span><br>
-    <span>icons => </span>
-        @forelse($icons as $icon)
-            <span>{{ $icon }}</span>
-            <br>
+<div class="p-3">
+    <span>resolvedAddress: {{ $resolvedAddress }}</span><br>
+    <span>timezone: {{ $timezone }}</span><br>
+    <span>icons: </span>
+    @forelse($icons as $index => $icon)
+        <span>{{ $icon }}</span>
+        <span>date: </span><span>{{ $datetime[$index] }}</span>
+        <br>
     @empty
         <span>No rain</span>
-        @endforelse
+    @endforelse
 </div>
 
 

@@ -17,8 +17,8 @@ class ClientController extends Controller
         $req->validate([
             'lat' => 'required',
             'lng' => 'required',
-            'from' => 'required',
-            'to' => 'required',
+            'from' => 'required|date',
+            'to' => 'required|date|after_or_equal:from',
         ]);
         $from = $req->from;
         $to = $req->to;
@@ -30,12 +30,14 @@ class ClientController extends Controller
         $timezone = $data['timezone'];
         $days = $data['days'];
         $icons = array();
+        $datetime = array();
         foreach ($days as $day)
         {
             if ($day['icon'] == 'rain') {
                 array_push($icons,$day['icon']);
+                array_push($datetime,$day['datetime']);
             }
         }
-        return view('result', compact('resolvedAddress', 'icons', 'timezone'));
+        return view('result', compact('resolvedAddress', 'icons', 'timezone','datetime'));
     }
 }
