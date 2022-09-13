@@ -1,6 +1,8 @@
 @extends('master')
 @section('content')
-
+    @if($errors->any())
+        <span id="valid">@error('msg'){{$message}} @enderror</span>
+    @endif
     <form action="{{ route('result') }}" method="GET">
         <table>
             <tr>
@@ -8,7 +10,7 @@
                     <label for="lat">Latitude</label>
                 </td>
                 <td>
-                    <input type="text" readonly class="form-control" placeholder="lat" name="lat" id="lat"><br>
+                    <input type="text" class="form-control" placeholder="lat" name="lat" id="lat"><br>
                     <span id="valid">@error('lat'){{ $message }}@enderror</span>
                 </td>
             </tr>
@@ -17,7 +19,7 @@
                     <label for="lng">Longitude</label>
                 </td>
                 <td>
-                    <input type="text" readonly class="form-control" placeholder="lng" name="lng" id="lng"><br>
+                    <input type="text" class="form-control" placeholder="lng" name="lng" id="lng"><br>
                     <span id="valid">@error('lng'){{ $message }}@enderror</span>
                 </td>
             </tr>
@@ -80,6 +82,7 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGWbBgTGULtu1-GQZAoWwCsVhN_V2fmPg&callback=initMap"
                 type="text/javascript"></script>
         <!-- submit button -->
-        <input type="submit" value="Send" class="btn btn-primary" id="submit">
+        <input type="submit" style="margin-top:5px; margin-left:10.5rem; width: 4rem;height:auto" value="Send"
+               class="btn btn-light" id="submit">
     </form>
 @endsection
