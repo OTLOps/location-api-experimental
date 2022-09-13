@@ -37,12 +37,14 @@
     </a>
 </div>
 <div class="p-3">
-    <span>resolvedAddress: {{ $resolvedAddress }}</span><br>
-    <span>timezone: {{ $timezone }}</span><br>
-    <span>icons: </span>
+    <span>ResolvedAddress: {{ $resolvedAddress }}</span><br>
+    <span>Timezone: {{ $timezone }}</span><br>
+    <span>Days: </span><br>
     @forelse($icons as $index => $icon)
-        <span>{{ $icon }}</span>
-        <span>date: </span><span>{{ $datetime[$index] }}</span>
+    <span>---------------------</span><br>
+        <span>Icon: </span><span>{{ $icon }}</span><br>
+        <span>Date: </span><span>{{ $datetime[$index] }}</span><br>
+        <span>Precip: </span><span>{{ $precip[$index] }}</span>
         <br>
     @empty
         <span>No rain</span>
